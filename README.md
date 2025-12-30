@@ -14,12 +14,11 @@ Collection of Python tools for financial analysis and portfolio management, deve
 
 *Features: Interactive metrics, Monte Carlo simulations, real-time visualization*
 
-📁 finance-python-projects/
-├── 📄 portfolio_optimizer.py    # Monte Carlo simulations
-├── 📄 financial_dashboard.py    # Streamlit web app  
-├── 📄 risk_analyzer.py         # VaR calculations
-├── 📄 requirements.txt         # Dependencies
-└── 📄 README.md               # Project documentation
+### 📁 Key Files
+- `portfolio_optimizer.py` - Portfolio optimization & Monte Carlo
+- `financial_dashboard.py` - Live Streamlit dashboard
+- `risk_analyzer.py` - Risk assessment tools
+- `requirements.txt` - Dependencies
 
 ## 🎯 What's Here
 
