@@ -34,3 +34,9 @@ Collection of Python tools for financial analysis and portfolio management, deve
 def monte_carlo_portfolio(n_simulations=10000):
     # Simulates 10,000 random portfolios
     # Returns optimal weights based on Sharpe ratio
+
+🚀 Live Demo
+
+**[👉 View Live Portfolio Dashboard] https://finance-python-projects-myjxgzkm3wgeiptsrsck9a.streamlit.app/**
+
+*Features: Interactive metrics, Monte Carlo simulations, real-time visualization*
