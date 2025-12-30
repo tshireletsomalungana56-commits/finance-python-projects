@@ -8,7 +8,7 @@
 
 Collection of Python tools for financial analysis and portfolio management, developed during CFA Program's Python for Financial Analysis (PSM) studies.
 
-##🚀 Live Demo
+## 🚀 Live Demo
 
 **[👉 View Live Portfolio Dashboard] https://finance-python-projects-myjxgzkm3wgeiptsrsck9a.streamlit.app/**
 
