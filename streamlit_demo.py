@@ -72,9 +72,6 @@ st.info("""
 Any code changes in the repository automatically update the live demo.
 """)
 
-# ============================================================================
-# ADD THIS SECTION TO YOUR EXISTING streamlit_demo.py
-# ============================================================================
 
 st.header("📊 CFA PSM Portfolio Analysis")
 
