@@ -40,3 +40,14 @@ def monte_carlo_portfolio(n_simulations=10000):
 **[👉 View Live Portfolio Dashboard] https://finance-python-projects-myjxgzkm3wgeiptsrsck9a.streamlit.app/**
 
 *Features: Interactive metrics, Monte Carlo simulations, real-time visualization*
+
+## 📚 About
+These projects were developed as part of the CFA Program's Python for Financial Analysis curriculum, focusing on practical applications of quantitative finance.
+
+## 🔗 Connect
+- **LinkedIn:** https://www.linkedin.com/in/tshireletso-malungana-428858296?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app
+- **Email:** tshireletsomalungana56@gmail.com
+- **GitHub:** https://github.com/tshireletsomalungana56-commits
+
+---
+*"The future of finance belongs to those who can code their analysis."*
