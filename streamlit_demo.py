@@ -71,3 +71,97 @@ st.info("""
 💡 **Pro Tip:** This entire dashboard is deployed directly from GitHub!
 Any code changes in the repository automatically update the live demo.
 """)
+
+# ============================================================================
+# ADD THIS SECTION TO YOUR EXISTING streamlit_demo.py
+# ============================================================================
+
+st.header("📊 CFA PSM Portfolio Analysis")
+
+# Import your CFA modules
+try:
+    from portfolio_optimizer import PortfolioOptimizer
+    from risk_analyzer import RiskAnalyzer
+    from financial_visualizer import FinancialVisualizer
+    
+    st.success("✅ CFA Modules Loaded Successfully!")
+    
+    # Demo of Portfolio Optimizer
+    with st.expander("🎯 Portfolio Optimizer Demo"):
+        st.write("""
+        **Monte Carlo Simulation for Asset Allocation**
+        This module implements CFA PSM concepts for portfolio optimization.
+        """)
+        
+        if st.button("Run Monte Carlo Simulation (Sample)"):
+            # Create sample data
+            import pandas as pd
+            import numpy as np
+            
+            np.random.seed(42)
+            dates = pd.date_range('2020-01-01', periods=252, freq='B')
+            sample_returns = pd.DataFrame({
+                'AAPL': np.random.normal(0.0005, 0.02, 252),
+                'GOOGL': np.random.normal(0.0004, 0.018, 252),
+                'MSFT': np.random.normal(0.0006, 0.015, 252)
+            }, index=dates)
+            
+            # Initialize and run optimizer
+            optimizer = PortfolioOptimizer(sample_returns)
+            results_df, optimal = optimizer.monte_carlo_simulation(n_simulations=1000)
+            
+            st.write(f"🏆 **Optimal Portfolio Found:**")
+            st.write(f"- Sharpe Ratio: {optimal['sharpe']:.3f}")
+            st.write(f"- Expected Return: {optimal['return']:.2%}")
+            st.write(f"- Expected Volatility: {optimal['volatility']:.2%}")
+    
+    # Demo of Risk Analyzer
+    with st.expander("⚠️ Risk Analyzer Demo"):
+        st.write("""
+        **Value at Risk (VaR) and Risk Metrics**
+        Implements CFA PSM risk analysis techniques.
+        """)
+        
+        if st.button("Calculate Risk Metrics (Sample)"):
+            import pandas as pd
+            import numpy as np
+            
+            np.random.seed(42)
+            portfolio_returns = pd.Series(np.random.normal(0.0005, 0.015, 252))
+            analyzer = RiskAnalyzer(portfolio_returns)
+            
+            var_historical = analyzer.historical_var()
+            es_historical = analyzer.expected_shortfall(method='historical')
+            
+            st.write(f"📉 **1-Day 95% VaR:** ${-var_historical*100:.2f} (on $100 portfolio)")
+            st.write(f"📊 **Expected Shortfall:** ${-es_historical*100:.2f}")
+            
+    # Demo of Financial Visualizer
+    with st.expander("🎨 Financial Visualizer Demo"):
+        st.write("""
+        **Interactive Financial Charts and Dashboards**
+        CFA PSM data visualization techniques.
+        """)
+        
+        if st.button("Generate Sample Charts"):
+            import pandas as pd
+            import numpy as np
+            
+            # Create sample data
+            dates = pd.date_range('2020-01-01', periods=252, freq='B')
+            asset_returns = pd.DataFrame({
+                'Stocks': np.random.normal(0.0007, 0.015, 252),
+                'Bonds': np.random.normal(0.0002, 0.005, 252),
+                'Gold': np.random.normal(0.0003, 0.012, 252)
+            }, index=dates)
+            
+            visualizer = FinancialVisualizer()
+            
+            # Show correlation heatmap
+            st.write("**Correlation Heatmap:**")
+            corr_fig = visualizer.plot_correlation_heatmap(asset_returns)
+            st.plotly_chart(corr_fig)
+            
+except ImportError as e:
+    st.warning(f"⚠️ CFA modules not fully loaded: {e}")
+    st.info("Make sure all CFA files are in the same directory.")
