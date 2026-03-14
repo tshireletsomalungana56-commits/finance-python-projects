@@ -1,0 +1,45 @@
+name: Playwright Wakeup
+on:
+  schedule:
+    - cron: '0 */10 * * *' # Runs every 10 hours
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  wake_up:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: npm install playwright
+        
+      - name: Run Wakeup Script
+        run: |
+          npx playwright install chromium --with-deps
+          node -e "
+          const { chromium } = require('playwright');
+          (async () => {
+            const browser = await chromium.launch();
+            const page = await browser.newPage();
+            console.log('Navigating to app...');
+            await page.goto('https://finance-python-projects-myjxgzkm3wgeiptsrsck9a.streamlit.app/');
+            
+            // Wait to see if the 'Wake up' button exists
+            const wakeButton = await page.getByRole('button', { name: /Yes, get this app back up/i });
+            
+            if (await wakeButton.isVisible()) {
+              console.log('App was sleeping! Clicking wake up button...');
+              await wakeButton.click();
+              // Wait 30 seconds for it to actually spin up
+              await page.waitForTimeout(30000);
+              console.log('Wake up signal sent.');
+            } else {
+              console.log('App is already awake. No action needed.');
+            }
+            
+            await browser.close();
+          })();
+          "
